@@ -1,8 +1,11 @@
 import CountryCard from './CountryCard';
 import { useCountries } from '../Context/CountriesContext';
+import useCountryStore from '../../store/Store';
 
 const CardList = () => {
     const { countries, loading, error } = useCountries();
+    const {SearchQuery}=useCountryStore(); 
+    const { FilterQuery } = useCountryStore();
 
     if (loading) {
         return (
@@ -28,9 +31,19 @@ const CardList = () => {
         );
     }
 
+    const filteredCountries = countries.filter((country) => 
+       
+   (FilterQuery ? country.region.toLowerCase().includes(FilterQuery.toLowerCase()) : true) &&
+   (SearchQuery ? country.name.common.toLowerCase().includes(SearchQuery.toLowerCase()) : true)
+
+    );
+ 
+
+   
+
     return (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8 bg-gray-100 dark:bg-gray-900">
-            {countries.map((Country) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 bg-gray-100 dark:bg-gray-900">
+            {filteredCountries.map((Country) => (
                 <CountryCard
                     key={Country.cca3}
                     Country={Country}

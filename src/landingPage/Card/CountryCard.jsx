@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 const CountryCard = ({Country}) => {
     const navigate = useNavigate();
     
-    const handleClick = () => {
+   const handleClick = () => {
         navigate(`/country/${Country.cca3}`);
         console.log(Country);
     };

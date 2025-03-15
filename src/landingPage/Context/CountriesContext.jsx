@@ -20,6 +20,7 @@ export function CountriesProvider({ children }) {
                     }
                 });
                 setCountries(response.data);
+                
             } catch (error) {
                 console.error('Error fetching countries:', error);
                 setError('Failed to load countries. Please try again later.');
@@ -28,8 +29,9 @@ export function CountriesProvider({ children }) {
             }
         };
         fetchCountries();
+       
     }, []);
-
+    console.log(countries);
     return (
         <CountriesContext.Provider value={{ countries, loading, error }}>
             {children}
