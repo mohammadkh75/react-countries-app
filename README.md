@@ -37,4 +37,4 @@ npm install
 npm run dev
 ```
 
-3. برنامه در آدرس http://localhost:5177` قابل دسترسی خواهد بود.
+
